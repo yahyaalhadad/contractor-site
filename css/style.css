@@ -80,6 +80,132 @@ nav {
     display: flex;
 }
 
+/* إعدادات عامة */
+body {
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+
+.slider-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    height: 500px;
+}
+
+/* الإعدادات الرئيسية للمُمر */
+.slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(13, 59, 102, 0.7);
+    color: white;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.slide:hover .overlay {
+    opacity: 1;
+}
+
+.overlay h3 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.overlay p {
+    margin: 10px 0 0;
+    opacity: 0.9;
+}
+
+.controls {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 10;
+}
+
+.prev-btn,
+.next-btn {
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prev-btn:hover,
+.next-btn:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* إعدادات الاستجابة للهواتف */
+@media (max-width: 768px) {
+    .slider-container {
+        height: 300px;
+    }
+
+    .controls {
+        padding: 0 10px;
+    }
+
+    .prev-btn,
+    .next-btn {
+        font-size: 1.5rem;
+        padding: 8px 15px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+
 nav a {
     color: white;
     text-decoration: none;
@@ -759,6 +885,22 @@ footer {
     header .container {
         flex-direction: column;
         text-align: center;
+    }
+
+    .slider-container {
+        height: 300px;
+    }
+
+    .controls {
+        padding: 0 10px;
+    }
+
+    .prev-btn,
+    .next-btn {
+        font-size: 1.5rem;
+        padding: 8px 15px;
+        width: 45px;
+        height: 45px;
     }
 
     .floating-call {

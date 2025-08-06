@@ -5,11 +5,98 @@
  * الإصدار: 1.0.0
  * التاريخ: 2023-10-15
  */
+// إعداد المتغيرات
 
 document.addEventListener('DOMContentLoaded', function () {
     /* ====================== */
     /* 1. القائمة التفاعلية للجوال */
     /* ====================== */
+    // وظيفة التهيئة
+    // إعداد المتغيرات
+    const slides = document.querySelectorAll('.slide');
+    const slider = document.querySelector('.slider');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    // التأكد من وجود العناصر
+    if (!slides.length || !slider) {
+        console.error('لم يتم العثور على العناصر المطلوبة');
+        return;
+    }
+
+    // حساب عدد الصور
+    const totalSlides = slides.length;
+    let currentIndex = 0;
+    let sliderInterval;
+
+    // دالة لتغيير الصورة
+    function changeSlide(n) {
+        // إزالة الكلاس النشط من جميع الصور
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+
+        // تحديد الصورة الحالية
+        currentIndex = (n + totalSlides) % totalSlides;
+
+        // إضافة الكلاس النشط للصورة الحالية
+        slides[currentIndex].classList.add('active');
+    }
+
+    // التحكم بالتنقل اليدوي
+    prevBtn.addEventListener('click', () => {
+        changeSlide(currentIndex - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        changeSlide(currentIndex + 1);
+    });
+
+    // التحكم بالتوقف عند التمرير
+    slider.addEventListener('mouseenter', () => {
+        clearInterval(sliderInterval);
+    });
+
+    slider.addEventListener('mouseleave', () => {
+        startAutoPlay();
+    });
+
+    // التشغيل التلقائي
+    function startAutoPlay() {
+        sliderInterval = setInterval(() => {
+            changeSlide(currentIndex + 1);
+        }, 3000);
+    }
+
+    // إضافة دعم التمرير (Swipe) للهواتف
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    slider.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+
+        const minSwipeDistance = 50;
+        if (touchStartX - touchEndX > minSwipeDistance) {
+            nextBtn.click(); // تمرير إلى اليسار
+        } else if (touchEndX - touchStartX > minSwipeDistance) {
+            prevBtn.click(); // تمرير إلى اليمين
+        }
+    }, { passive: true });
+
+    // بدء التشغيل التلقائي عند التحميل
+    startAutoPlay();
+
+    // التأكد من أن الصور مُحمَّلة
+    window.addEventListener('load', () => {
+        // إظهار الصورة الأولى
+        slides[0].classList.add('active');
+    });
+
+
 
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mainNav = document.getElementById('mainNav');
@@ -21,6 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
         });
     }
+    // إعداد المتغيرات
 
     /* ====================== */
     /* 2. وظيفة عرض المزيد من الخدمات */
@@ -1600,7 +1688,34 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ====================== */
     /* 78. وظيفة التأثيرات على أزرار العرض التفصيلي */
     /* ====================== */
+    // إظهار العناصر تدريجيًا عند التحميل والتمرير
+    document.addEventListener('DOMContentLoaded', function () {
+        const galleryItems = document.querySelectorAll('.gallery-item');
 
+        // تأكد من وجود عناصر قبل المتابعة
+        if (!galleryItems.length) return;
+
+        // دالة لفحص العناصر المرئية
+        function checkVisibleItems() {
+            const windowHeight = window.innerHeight;
+            galleryItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (
+                    rect.top < windowHeight * 0.8 &&   // يظهر عندما تدخل الصورة 80% في الشاشة
+                    rect.bottom > 0 &&
+                    !item.classList.contains('visible')
+                ) {
+                    item.classList.add('visible');
+                }
+            });
+        }
+
+        // فحص العناصر عند التحميل
+        checkVisibleItems();
+
+        // فحص العناصر عند التمرير
+        window.addEventListener('scroll', checkVisibleItems);
+    });
     const imageGallery = document.querySelectorAll('.gallery-item');
     const galleryModal = document.getElementById('galleryModal');
     const galleryImage = document.getElementById('galleryImage');
