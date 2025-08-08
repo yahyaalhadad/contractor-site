@@ -187,23 +187,7 @@ body {
 }
 
 /* إعدادات الاستجابة للهواتف */
-@media (max-width: 768px) {
-    .slider-container {
-        height: 300px;
-    }
 
-    .controls {
-        padding: 0 10px;
-    }
-
-    .prev-btn,
-    .next-btn {
-        font-size: 1.5rem;
-        padding: 8px 15px;
-        width: 45px;
-        height: 45px;
-    }
-}
 
 
 nav a {
@@ -902,6 +886,7 @@ footer {
         width: 45px;
         height: 45px;
     }
+
 
     .floating-call {
         right: 5px;

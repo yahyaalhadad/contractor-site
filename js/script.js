@@ -13,6 +13,17 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ====================== */
     // وظيفة التهيئة
     // إعداد المتغيرات
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+
+    if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', function () {
+            mainNav.classList.toggle('active');
+            // تغيير أيقونة القائمة عند الفتح والإغلاق
+            this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
+        });
+    }
     const slides = document.querySelectorAll('.slide');
     const slider = document.querySelector('.slider');
     const prevBtn = document.querySelector('.prev-btn');
@@ -98,16 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mainNav = document.getElementById('mainNav');
 
-    if (mobileMenuBtn && mainNav) {
-        mobileMenuBtn.addEventListener('click', function () {
-            mainNav.classList.toggle('active');
-            // تغيير أيقونة القائمة عند الفتح والإغلاق
-            this.textContent = mainNav.classList.contains('active') ? '✕' : '☰';
-        });
-    }
     // إعداد المتغيرات
 
     /* ====================== */
