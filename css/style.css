@@ -922,6 +922,18 @@ footer {
     transform-origin: left;
 }
 
+/* إصلاح تعارض الأنماط */
+.service-details,
+.service-features,
+.features-grid,
+.feature-item {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    max-height: none !important;
+}
+
 /* التأثيرات */
 @keyframes fadeInDown {
     from {
