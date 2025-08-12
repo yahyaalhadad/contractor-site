@@ -5,6 +5,7 @@ Disallow: /temp/
 Disallow: /backup/
 Disallow: /admin/
 Disallow: /wp-admin/
+
 Allow: /wp-content/uploads/
 Allow: /images/
 Allow: /css/
@@ -20,4 +21,5 @@ Allow: /css/style.css$
 Allow: /js/script.js$
 Allow: /fonts/
 Allow: /wp-admin/admin-ajax.php
+
 Sitemap: https://riyadhpaintting.com/sitemap.xml
