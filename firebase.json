@@ -8,9 +8,30 @@
     ],
     "redirects": [
       {
-        "source": "/",
-        "destination": "/index.html",
+        "source": "/index.html",
+        "destination": "/",
         "type": 301
+      },
+      {
+        "source": "http://www.riyadhpaintting.com/**",
+        "destination": "https://riyadhpaintting.com/",
+        "type": 301
+      },
+      {
+        "source": "http://riyadhpaintting.com/**",
+        "destination": "https://riyadhpaintting.com/",
+        "type": 301
+      },
+      {
+        "source": "https://www.riyadhpaintting.com/**",
+        "destination": "https://riyadhpaintting.com/",
+        "type": 301
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   }
